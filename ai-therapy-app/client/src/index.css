@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide all scrollbars */
+::-webkit-scrollbar {
+  display: none;
+}
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Slow spin animation for the star */
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 1.2s linear infinite;
+}
+
+/* Responsive styles for mobile devices */
+@media (max-width: 900px) {
+  .mobile-hide {
+    display: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .mobile-main {
+    margin-left: 0 !important;
+    width: 100vw !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    padding-bottom: 80px !important;
+  }
+  .mobile-chat {
+    max-width: 100vw !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+  .mobile-input {
+    width: 98vw !important;
+    max-width: 98vw !important;
+    min-width: 0 !important;
+    left: 1vw !important;
+    transform: none !important;
+    bottom: 12px !important;
+  }
+  .mobile-wobble {
+    width: 80vw !important;
+    height: 80vw !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    left: 50% !important;
+    top: 60px !important;
+    transform: translateX(-50%) !important;
+    
+  }
+}
+
+@media (max-width: 600px) {
+  .mobile-wobble {
+    width: 96vw !important;
+    height: 96vw !important;
+    top: 32px !important;
+  }
+  .mobile-input {
+    width: 96vw !important;
+    left: 2vw !important;
+  }
+}
+
+/* iPhone 12, 14, 16, Pixel 6, 8, 9 specific tweaks */
+@media (max-width: 430px) {
+  .mobile-wobble {
+    width: 98vw !important;
+    height: 98vw !important;
+    top:-192px !important;
+  }
+  .mobile-input {
+    width: 94vw !important;
+    left: 3vw !important;
+  }
+}
+
+/* Move the wobble sphere up on mobile devices (iPhone 14/15/16, Pixel, etc.) */
+@media (max-width: 600px) {
+  .wobble-sphere-container {
+    top: 160%;
+    transform: translate(-80%, -70%);
+  }
+}
+
+/* Grainy vertical gradient background: white → light pink → white purple */
+.grainy-gradient-bg {
+  background: linear-gradient(
+    180deg,
+    #fff 0%,
+    #ffbbd6 40%,
+    #d7b2ff 100%
+  );
+  position: relative;
+}
+.grainy-gradient-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 1.21;
+  /* SVG noise texture as background image */
+  background-image: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" xmlns="http://www.w3.org/2000/svg"><filter id="n" x="0" y="0"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%25" height="100%25" filter="url(%23n)" opacity="0.5"/></svg>');
+  background-repeat: repeat;
+}
